@@ -205,8 +205,8 @@ tigerLex ss = runAlex ss go
       sc <- alexGetStartCode
       case (token,sc) of
         (Eof, _)
-          | sc == comment -> error "Encountered EOF with unclosed comment"
-          | sc == str -> error "Encountered EOF with unclosed string"
+          | sc == comment -> alexError "Encountered EOF with unclosed comment"
+          | sc == str -> alexError "Encountered EOF with unclosed string"
           | otherwise -> return []
 
         _ -> do
